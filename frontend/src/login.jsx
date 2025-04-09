@@ -15,7 +15,7 @@ const Login = () => {
             body: JSON.stringify(json)
         })
         if(!response.ok){
-            throw Error('failed to register user')
+            return window.alert('user doesn"t exist')
         }
         const msg = response.json()
         console.log(msg)

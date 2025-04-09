@@ -31,7 +31,10 @@ exports.login = async (req,res)=>{
         if(!isValid){
             return res.json({msg: "credentials not correct"})
         }
+        const userToken = jwt.sign({_id:user._id},process.env.JWT_SECRET)
+        res.cookie(userToken,"userToken",{httpOnly: true})
         res.status(200).json({msg:"well authenticated"})
+
     } catch (error) {
         console.log(error)
         res.json({msg: "internal server error"})
