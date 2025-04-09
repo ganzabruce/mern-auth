@@ -9,7 +9,7 @@ const Login = () => {
     const handleLogin = async (e)=>{
         e.preventDefault()
         const json = {names,password}
-        const response = await fetch('localhost:4000/login',{
+        const response = await fetch('http://localhost:4000/login',{
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(json)
@@ -17,8 +17,9 @@ const Login = () => {
         if(!response.ok){
             throw Error('failed to register user')
         }
+        const msg = response.json()
+        console.log(msg)
         navigate('/home')
-        
     }  
     return ( 
         <div className="login">
